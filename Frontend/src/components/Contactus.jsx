@@ -1,17 +1,22 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import Login from './Login'
 import { useForm } from "react-hook-form"
 import Navbar from './Navbar'
+import toast from 'react-hot-toast'
 
 function Contactus() {
+  const navigate=useNavigate();
     const {
         register,
         handleSubmit,
         formState: { errors },
       } = useForm()
     
-      const onSubmit = (data) => console.log(data)
+      const onSubmit = (data) => {
+        toast.success("Submitted Successfully!")
+        navigate('/')
+      }
       
   return (
     <>
@@ -61,7 +66,7 @@ function Contactus() {
             Message
         </span>
         <br/>
-        <input
+        <textarea
         type = "text"
         placeholder = "Type your message"
         className="w-80 px-3 py-1 border rounded-md outline-none"
